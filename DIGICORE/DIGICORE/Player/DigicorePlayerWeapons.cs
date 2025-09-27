@@ -75,15 +75,17 @@ public partial class DigicorePlayer : CharacterBody3D {
     /// Cycles to the next weapon type
     /// </summary>
     private void OnNextWeaponType() {
-        _currentWeaponTypeIndex = (_currentWeaponTypeIndex + 1) % WeaponTypeContainer.Length;
-        EquipOrCycleWeaponType(_currentWeaponTypeIndex);
+        int nextIndex = _currentWeaponTypeIndex + 1;
+        if (nextIndex >= WeaponTypeContainer.Length) { nextIndex = 0; }
+        EquipOrCycleWeaponType(nextIndex);
     }
     
     /// <summary>
     /// Cycles to the previous weapon type
     /// </summary>
     private void OnPreviousWeaponType() {
-        _currentWeaponTypeIndex = (_currentWeaponTypeIndex - 1) % WeaponTypeContainer.Length;
-        EquipOrCycleWeaponType(_currentWeaponTypeIndex);
+        int previousIndex = _currentWeaponTypeIndex - 1;
+        if (previousIndex < 0) { previousIndex = WeaponTypeContainer.Length - 1; }
+        EquipOrCycleWeaponType(previousIndex);
     }
 }
