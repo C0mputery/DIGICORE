@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciflu4yk7gcp5"]
+
+[ext_resource type="Script" uid="uid://c0lxfw8hswqmc" path="res://DIGICORE/Projectiles/Rocket.cs" id="1_al867"]
+[ext_resource type="Curve" uid="uid://q66q678hcwra" path="res://RocketCurve.tres" id="2_g04ui"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_al867"]
+
+[node name="Rocket" type="Node3D"]
+script = ExtResource("1_al867")
+_speedCurve = ExtResource("2_g04ui")
+metadata/_custom_type_script = "uid://c0lxfw8hswqmc"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_al867")

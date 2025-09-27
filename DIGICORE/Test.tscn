@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://fr0k5m8e80wf"]
+
+[ext_resource type="Script" uid="uid://bf6sbwm1xa43y" path="res://SceneManagement/MainScene.cs" id="1_2au82"]
+[ext_resource type="PackedScene" uid="uid://bxqw1c7o6j814" path="res://LocalPlayer.tscn" id="1_myinc"]
+[ext_resource type="PackedScene" uid="uid://18tv67rvsi8p" path="res://Dummy.tscn" id="2_njov2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rvu7i"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_myinc"]
+sky_material = SubResource("ProceduralSkyMaterial_rvu7i")
+
+[sub_resource type="Environment" id="Environment_njov2"]
+background_mode = 2
+sky = SubResource("Sky_myinc")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_myinc"]
+offsets = PackedFloat32Array(0, 0.33632287, 0.71300447, 1)
+colors = PackedColorArray(0.5921569, 0.46666667, 0, 1, 1, 0, 1, 1, 0, 0.7607843, 0, 1, 0.5921569, 0.46666667, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_njov2"]
+gradient = SubResource("Gradient_myinc")
+width = 2048
+height = 2048
+fill_to = Vector2(0.17948718, 0.1965812)
+repeat = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_myinc"]
+albedo_texture = SubResource("GradientTexture2D_njov2")
+metallic_specular = 0.0
+
+[node name="Test" type="Node3D"]
+script = ExtResource("1_2au82")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_njov2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 0.78859067, -0.61491853, 0, 0.61491853, 0.78859067, -25.82391, 7.2142057, -1.2323256)
+size = Vector3(5.9730988, 4.7421646, 34.635353)
+material = SubResource("StandardMaterial3D_myinc")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, 0.9422388, -0.3349418, 0, 0.3349418, 0.9422388, -20.243412, 2.7888198, -4.333186)
+size = Vector3(5.9730988, 4.7421646, 34.635353)
+material = SubResource("StandardMaterial3D_myinc")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D2"]
+transform = Transform3D(1, 0, 0, 0, -0.08070341, -0.99673843, 0, 0.99673843, -0.08070341, -26.036074, 0.8259163, -15.183616)
+size = Vector3(5.9730988, 4.7421646, 34.635353)
+material = SubResource("StandardMaterial3D_myinc")
+
+[node name="Dummy" parent="CSGCombiner3D2" instance=ExtResource("2_njov2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.933537, -0.5, 2.0139108)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.78327, 22.536987, -51.856293)
+flip_faces = true
+size = Vector3(169.07625, 46.073975, 169.00555)
+material = SubResource("StandardMaterial3D_myinc")
+
+[node name="LocalPlayer" parent="." instance=ExtResource("1_myinc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4261813, -0.49999952, 8.020942)
