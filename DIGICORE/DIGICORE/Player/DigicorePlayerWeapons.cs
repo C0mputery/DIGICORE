@@ -3,8 +3,7 @@ using Digicore.Player.Weapons;
 
 namespace Digicore.Player;
 
-public partial class DigicorePlayer : CharacterBody3D
-{
+public partial class DigicorePlayer : CharacterBody3D {
     [ExportCategory("Weapons")]
     // Godot does not support exporting multi-dimensional arrays this makes me sad.
     [Export] public WeaponTypeContainer[] WeaponTypeContainer = [];

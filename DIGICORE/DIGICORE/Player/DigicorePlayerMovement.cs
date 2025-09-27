@@ -46,7 +46,6 @@ public partial class DigicorePlayer : CharacterBody3D {
 	
 	/// <summary>
 	/// Core Quake style movement logic.
-	/// Does not handle jumping or wall jumping, etc, only ground and air movement.
 	/// </summary>
 	/// <param name="velocity"> Reference to the velocity vector to modify. </param>
 	/// <param name="wishDirection"> Direction to accelerate towards. </param>
