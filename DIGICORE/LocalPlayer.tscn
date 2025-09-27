@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxqw1c7o6j814"]
+[gd_scene load_steps=12 format=3 uid="uid://bxqw1c7o6j814"]
 
 [ext_resource type="Script" uid="uid://c71woxl38r386" path="res://DIGICORE/Player/DigicorePlayer.cs" id="1_vgigr"]
 [ext_resource type="Script" uid="uid://7bvfsvwq5ge1" path="res://DIGICORE/Weapons/SemiAutoHitscan.cs" id="2_3fb71"]
 [ext_resource type="Script" uid="uid://v6x432dca2mf" path="res://DIGICORE/Weapons/WeaponTypeContainer.cs" id="2_hwo7t"]
 [ext_resource type="Script" uid="uid://b6bkivlf0qmxq" path="res://DIGICORE/Weapons/SemiAutoProjectile.cs" id="3_hwo7t"]
+[ext_resource type="Script" uid="uid://k522afmn6ywu" path="res://DIGICORE/Weapons/SemiAutoHitscanWithProjectileAltFire.cs" id="4_fqfe0"]
 [ext_resource type="PackedScene" uid="uid://ciflu4yk7gcp5" path="res://Rocket.tscn" id="5_047be"]
+[ext_resource type="PackedScene" uid="uid://dfyqwg7a8bbnw" path="res://CoinProjectile.tscn" id="5_rnslx"]
 
 [sub_resource type="Gradient" id="Gradient_hwo7t"]
 offsets = PackedFloat32Array(0)
@@ -18,13 +20,14 @@ height = 1.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_py2vy"]
 
-[node name="LocalPlayer" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "_healthLabel", "_speedLabel", "WeaponTypeContainer")]
+[node name="LocalPlayer" type="CharacterBody3D" node_paths=PackedStringArray("Camera", "_healthLabel", "_speedLabel", "_weaponLabel", "WeaponTypeContainer")]
 floor_constant_speed = true
 floor_snap_length = 0.5
 script = ExtResource("1_vgigr")
 Camera = NodePath("Camera3D")
-_healthLabel = NodePath("UI/MarginContainer/HBoxContainer/HealthNumber")
-_speedLabel = NodePath("UI/MarginContainer/HBoxContainer/SpeedNumber")
+_healthLabel = NodePath("UI/VBoxContainer/MarginContainer/HBoxContainer/HealthNumber")
+_speedLabel = NodePath("UI/VBoxContainer/MarginContainer/HBoxContainer/SpeedNumber")
+_weaponLabel = NodePath("UI/VBoxContainer/MarginContainer2/HBoxContainer/WeaponValue")
 WeaponTypeContainer = [NodePath("Guns/Gun1"), NodePath("Guns/Gun2")]
 metadata/_custom_type_script = "uid://c71woxl38r386"
 
@@ -36,47 +39,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -22.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
-layout_mode = 2
-
-[node name="HealthLable" type="Label" parent="UI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "HEALTH: "
-
-[node name="HealthNumber" type="Label" parent="UI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "100"
-
-[node name="HealthUnit" type="Label" parent="UI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "/ 100"
-
-[node name="SpeedLable" type="Label" parent="UI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "SPEED:"
-
-[node name="SpeedNumber" type="Label" parent="UI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "0"
-
-[node name="SpeedUnit" type="Label" parent="UI/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "m/s"
 
 [node name="TextureRect" type="TextureRect" parent="UI"]
 layout_mode = 1
@@ -94,24 +56,89 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_047be")
 expand_mode = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="WeaponLable" type="Label" parent="UI/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Weapon: "
+
+[node name="WeaponValue" type="Label" parent="UI/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthLable" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "HEALTH: "
+
+[node name="HealthNumber" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "100"
+
+[node name="HealthUnit" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "/ 100"
+
+[node name="SpeedLable" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "SPEED:"
+
+[node name="SpeedNumber" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+
+[node name="SpeedUnit" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "m/s"
+
 [node name="Guns" type="Node" parent="."]
 
 [node name="Gun1" type="Node" parent="Guns" node_paths=PackedStringArray("Weapons")]
 script = ExtResource("2_hwo7t")
-Weapons = [NodePath("SemiAutoHitscan")]
+Weapons = [NodePath("Pistol"), NodePath("Coin Gun")]
 metadata/_custom_type_script = "uid://v6x432dca2mf"
 
-[node name="SemiAutoHitscan" type="Node" parent="Guns/Gun1" node_paths=PackedStringArray("Player")]
+[node name="Pistol" type="Node" parent="Guns/Gun1" node_paths=PackedStringArray("Player")]
 script = ExtResource("2_3fb71")
 Player = NodePath("../../..")
 metadata/_custom_type_script = "uid://7bvfsvwq5ge1"
 
+[node name="Coin Gun" type="Node" parent="Guns/Gun1" node_paths=PackedStringArray("Player")]
+script = ExtResource("4_fqfe0")
+_projectile = ExtResource("5_rnslx")
+Player = NodePath("../../..")
+metadata/_custom_type_script = "uid://k522afmn6ywu"
+
 [node name="Gun2" type="Node" parent="Guns" node_paths=PackedStringArray("Weapons")]
 script = ExtResource("2_hwo7t")
-Weapons = [NodePath("SemiAutoProjectile")]
+Weapons = [NodePath("Rocket Launcher")]
 metadata/_custom_type_script = "uid://v6x432dca2mf"
 
-[node name="SemiAutoProjectile" type="Node" parent="Guns/Gun2" node_paths=PackedStringArray("Player")]
+[node name="Rocket Launcher" type="Node" parent="Guns/Gun2" node_paths=PackedStringArray("Player")]
 script = ExtResource("3_hwo7t")
 _projectile = ExtResource("5_047be")
 Player = NodePath("../../..")

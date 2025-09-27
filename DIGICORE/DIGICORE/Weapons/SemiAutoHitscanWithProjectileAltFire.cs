@@ -6,15 +6,18 @@ using Godot.Collections;
 namespace Digicore.Player.Weapons;
 
 [GlobalClass]
-public partial class SemiAutoProjectile : DigicoreWeapon {
+public partial class SemiAutoHitscanWithProjectileAltFire : SemiAutoHitscan {
     [Export] private PackedScene _projectile;
-    [Export] public float FireRate = 0.5f; // Shots per second
+    [Export] public float AltFireRate = 0.5f;
     private float _timeSinceLastShot = 0f;
     
-    public override void _Process(double delta) { _timeSinceLastShot += (float)delta; }
+    public override void _Process(double delta) { 
+        base._Process(delta);
+        _timeSinceLastShot += (float)delta; 
+    }
     
-    public void PrimaryAction() {
-        if (_timeSinceLastShot < 1f / FireRate) { return; }
+    public void SecondaryAttack() {
+        if (_timeSinceLastShot < 1f / AltFireRate) { return; }
         
         Projectile loadedProjectile = _projectile.Instantiate<Projectile>();
         loadedProjectile.Player = Player;
@@ -23,12 +26,14 @@ public partial class SemiAutoProjectile : DigicoreWeapon {
         
         _timeSinceLastShot = 0f;
     }
-
+    
     public override void Equip() {
-        InputMapHandler.Primary.Pressed += PrimaryAction;
+        base.Equip();
+        InputMapHandler.Secondary.Pressed += SecondaryAttack;
     }
-
+    
     public override void Unequip() {
-        InputMapHandler.Primary.Pressed -= PrimaryAction;
+        base.Unequip();
+        InputMapHandler.Secondary.Pressed -= SecondaryAttack;
     }
 }

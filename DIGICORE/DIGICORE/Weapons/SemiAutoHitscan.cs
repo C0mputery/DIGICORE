@@ -21,8 +21,7 @@ public partial class SemiAutoHitscan : DigicoreWeapon {
         
         if (BetterPhysicsCast.Raycast(Player.Camera.GlobalPosition, Player.Camera.GlobalTransform.Basis.Z * -1, Range, _playerRid, out RaycastHit hit)) {
             if (hit.Collider is IDamageable damageable) { damageable.TakeDamage(Damage, hit.Normal); }
-        } else {
-            GD.Print("Missed");
+            GD.Print(hit.Collider);
         }
         
         _timeSinceLastShot = 0f;
@@ -30,7 +29,6 @@ public partial class SemiAutoHitscan : DigicoreWeapon {
 
     public override void Equip() {
         InputMapHandler.Primary.Pressed += PrimaryAction;
-        GD.Print($"Equipped {Name}");
     }
 
     public override void Unequip() {

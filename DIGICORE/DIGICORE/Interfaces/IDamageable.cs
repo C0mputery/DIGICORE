@@ -6,7 +6,6 @@ namespace Digicore.Interfaces;
 /// Interface for anything that can take damage.
 /// </summary>
 public interface IDamageable {
-    
     /// <summary>
     /// Apply damage to the object.
     /// </summary>

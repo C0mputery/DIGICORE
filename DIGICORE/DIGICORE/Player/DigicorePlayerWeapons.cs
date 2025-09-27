@@ -34,23 +34,25 @@ public partial class DigicorePlayer : CharacterBody3D {
             _currentWeapon?.Unequip();
             
             _currentWeaponTypeIndex = typeIndex;
-            
             WeaponTypeContainer weaponType = WeaponTypeContainer[_currentWeaponTypeIndex];
             _currentWeapon = weaponType.Weapons[weaponType.CurrentIndex];
+            
+            _weaponLabel.Text = _currentWeapon?.Name ?? "None";
+            _currentWeapon?.Equip();
         } else {
-
             WeaponTypeContainer weaponType = WeaponTypeContainer[_currentWeaponTypeIndex];
+            
             int newIndex = (weaponType.CurrentIndex + 1) % weaponType.Weapons.Length;
             if (newIndex != weaponType.CurrentIndex) {
                 _currentWeapon?.Unequip();
                 
+                weaponType.CurrentIndex = newIndex;
                 _currentWeapon = weaponType.Weapons[weaponType.CurrentIndex];
                 
-                weaponType.CurrentIndex = newIndex;
+                _weaponLabel.Text = _currentWeapon?.Name ?? "None";
+                _currentWeapon?.Equip();
             }
         }
-
-        _currentWeapon?.Equip();
     }
     
     /// <summary>
