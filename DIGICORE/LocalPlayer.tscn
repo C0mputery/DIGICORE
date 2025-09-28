@@ -23,7 +23,7 @@ script = ExtResource("1_vgigr")
 Camera = NodePath("Camera3D")
 _healthLabel = NodePath("UI/MarginContainer/HBoxContainer/HealthNumber")
 _speedLabel = NodePath("UI/MarginContainer/HBoxContainer/SpeedNumber")
-WeaponTypeContainer = [NodePath("Guns/Gun1"), NodePath("")]
+WeaponTypeContainer = [NodePath("Guns/Gun1")]
 metadata/_custom_type_script = "uid://c71woxl38r386"
 
 [node name="UI" type="Control" parent="."]
