@@ -5,7 +5,7 @@ using Godot.Collections;
 namespace Digicore.Player.Projectiles;
 
 [GlobalClass]
-public partial class CoinProjectile : Projectile {
+public partial class CoinProjectile : Projectile, IDamageable {
     [Export] private Curve _speedCurve = new Curve();
     [Export] private float _lifetime = 5f;
     private float _age = 0f;
@@ -23,5 +23,14 @@ public partial class CoinProjectile : Projectile {
         } else {
             GlobalPosition += GlobalTransform.Basis.Z * -1 * speed * (float)delta;
         }
+    }
+
+    public void Shot() {
+        
+    }
+
+    public void TakeDamage(float damage, Vector3 force)
+    {
+        throw new System.NotImplementedException();
     }
 }

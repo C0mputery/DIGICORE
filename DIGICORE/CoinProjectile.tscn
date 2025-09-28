@@ -1,11 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfyqwg7a8bbnw"]
+[gd_scene load_steps=4 format=3 uid="uid://dfyqwg7a8bbnw"]
 
 [ext_resource type="Script" uid="uid://dsvhvp852nbr5" path="res://DIGICORE/Projectiles/Coin/CoinProjectile.cs" id="1_64agx"]
 [ext_resource type="Curve" uid="uid://q66q678hcwra" path="res://RocketCurve.tres" id="2_1u31u"]
-[ext_resource type="Script" uid="uid://cfcw8v13yrwbq" path="res://DIGICORE/Projectiles/Coin/CoinDamageable.cs" id="3_qwdke"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_qwdke"]
-radius = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_qwdke"]
 radius = 0.125
@@ -15,13 +11,6 @@ height = 0.25
 script = ExtResource("1_64agx")
 _speedCurve = ExtResource("2_1u31u")
 metadata/_custom_type_script = "uid://dsvhvp852nbr5"
-
-[node name="CoinDamageable" type="StaticBody3D" parent="."]
-script = ExtResource("3_qwdke")
-metadata/_custom_type_script = "uid://cfcw8v13yrwbq"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CoinDamageable"]
-shape = SubResource("SphereShape3D_qwdke")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_qwdke")
