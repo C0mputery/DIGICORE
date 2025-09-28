@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://fr0k5m8e80wf"]
+[gd_scene load_steps=9 format=3 uid="uid://fr0k5m8e80wf"]
 
 [ext_resource type="Script" uid="uid://bf6sbwm1xa43y" path="res://SceneManagement/MainScene.cs" id="1_2au82"]
 [ext_resource type="PackedScene" uid="uid://bxqw1c7o6j814" path="res://LocalPlayer.tscn" id="1_myinc"]
-[ext_resource type="PackedScene" uid="uid://18tv67rvsi8p" path="res://Dummy.tscn" id="2_njov2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rvu7i"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -60,9 +59,6 @@ transform = Transform3D(1, 0, 0, 0, -0.08070341, -0.99673843, 0, 0.99673843, -0.
 size = Vector3(5.9730988, 4.7421646, 34.635353)
 material = SubResource("StandardMaterial3D_myinc")
 
-[node name="Dummy" parent="CSGCombiner3D2" instance=ExtResource("2_njov2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.933537, -0.5, 2.0139108)
-
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 use_collision = true
 
@@ -72,5 +68,6 @@ flip_faces = true
 size = Vector3(169.07625, 46.073975, 169.00555)
 material = SubResource("StandardMaterial3D_myinc")
 
-[node name="LocalPlayer" parent="." instance=ExtResource("1_myinc")]
+[node name="LocalPlayer" parent="." node_paths=PackedStringArray("WeaponTypeContainer") instance=ExtResource("1_myinc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4261813, -0.49999952, 8.020942)
+WeaponTypeContainer = [NodePath("Guns/Gun1"), null]

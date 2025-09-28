@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxqw1c7o6j814"]
+[gd_scene load_steps=8 format=3 uid="uid://bxqw1c7o6j814"]
 
 [ext_resource type="Script" uid="uid://c71woxl38r386" path="res://DIGICORE/Player/DigicorePlayer.cs" id="1_vgigr"]
 [ext_resource type="Script" uid="uid://7bvfsvwq5ge1" path="res://DIGICORE/Weapons/SemiAutoHitscan.cs" id="2_3fb71"]
 [ext_resource type="Script" uid="uid://v6x432dca2mf" path="res://DIGICORE/Weapons/WeaponTypeContainer.cs" id="2_hwo7t"]
-[ext_resource type="Script" uid="uid://b6bkivlf0qmxq" path="res://DIGICORE/Weapons/SemiAutoProjectile.cs" id="3_hwo7t"]
-[ext_resource type="PackedScene" uid="uid://ciflu4yk7gcp5" path="res://Rocket.tscn" id="5_047be"]
 
 [sub_resource type="Gradient" id="Gradient_hwo7t"]
 offsets = PackedFloat32Array(0)
@@ -25,7 +23,7 @@ script = ExtResource("1_vgigr")
 Camera = NodePath("Camera3D")
 _healthLabel = NodePath("UI/MarginContainer/HBoxContainer/HealthNumber")
 _speedLabel = NodePath("UI/MarginContainer/HBoxContainer/SpeedNumber")
-WeaponTypeContainer = [NodePath("Guns/Gun1"), NodePath("Guns/Gun2")]
+WeaponTypeContainer = [NodePath("Guns/Gun1"), NodePath("")]
 metadata/_custom_type_script = "uid://c71woxl38r386"
 
 [node name="UI" type="Control" parent="."]
@@ -105,17 +103,6 @@ metadata/_custom_type_script = "uid://v6x432dca2mf"
 script = ExtResource("2_3fb71")
 Player = NodePath("../../..")
 metadata/_custom_type_script = "uid://7bvfsvwq5ge1"
-
-[node name="Gun2" type="Node" parent="Guns" node_paths=PackedStringArray("Weapons")]
-script = ExtResource("2_hwo7t")
-Weapons = [NodePath("SemiAutoProjectile")]
-metadata/_custom_type_script = "uid://v6x432dca2mf"
-
-[node name="SemiAutoProjectile" type="Node" parent="Guns/Gun2" node_paths=PackedStringArray("Player")]
-script = ExtResource("3_hwo7t")
-_projectile = ExtResource("5_047be")
-Player = NodePath("../../..")
-metadata/_custom_type_script = "uid://b6bkivlf0qmxq"
 
 [node name="StandingCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
