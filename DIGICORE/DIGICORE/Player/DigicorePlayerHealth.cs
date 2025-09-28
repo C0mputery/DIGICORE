@@ -1,9 +1,8 @@
-using Digicore.Interfaces;
 using Godot;
 
 namespace Digicore.Player;
 
-public partial class DigicorePlayer : CharacterBody3D, IDamageable {
+public partial class DigicorePlayer : CharacterBody3D {
 	[ExportCategory("Health")]
 	[Export] private float _maxHealth = 100f;
 	private float _currentHealth = 100;

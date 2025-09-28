@@ -1,4 +1,3 @@
-using Digicore.Interfaces;
 using Godot;
 using Godot.Collections;
 
@@ -20,7 +19,7 @@ public partial class SemiAutoHitscan : DigicoreWeapon {
         if (_timeSinceLastShot < 1f / FireRate) { return; }
         
         if (BetterPhysicsCast.Raycast(Player.Camera.GlobalPosition, Player.Camera.GlobalTransform.Basis.Z * -1, Range, _playerRid, out RaycastHit hit)) {
-            if (hit.Collider is IDamageable damageable) { damageable.TakeDamage(Damage, hit.Normal); }
+            GD.Print($"Hit {hit.Collider} at {hit.Position}");
         } else {
             GD.Print("Missed");
         }
