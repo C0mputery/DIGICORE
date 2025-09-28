@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfyqwg7a8bbnw"]
+[gd_scene load_steps=7 format=3 uid="uid://dfyqwg7a8bbnw"]
 
 [ext_resource type="Script" uid="uid://dsvhvp852nbr5" path="res://DIGICORE/Projectiles/Coin/CoinProjectile.cs" id="1_64agx"]
 [ext_resource type="Curve" uid="uid://q66q678hcwra" path="res://RocketCurve.tres" id="2_1u31u"]
 [ext_resource type="Script" uid="uid://cmibbfmmjead2" path="res://DIGICORE/Interfaces/StaticBody3DDamageableRedirector.cs" id="3_qwdke"]
+[ext_resource type="Script" uid="uid://cflijsu0ibo26" path="res://DIGICORE/Projectiles/Coin/CoinTarget.cs" id="4_bmvfy"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_qwdke"]
 radius = 0.125
@@ -26,3 +27,8 @@ metadata/_custom_type_script = "uid://cmibbfmmjead2"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("SphereShape3D_1u31u")
+
+[node name="CoinTarget" type="Node3D" parent="." node_paths=PackedStringArray("CollisionObject")]
+script = ExtResource("4_bmvfy")
+CollisionObject = NodePath("../StaticBody3D")
+metadata/_custom_type_script = "uid://cflijsu0ibo26"

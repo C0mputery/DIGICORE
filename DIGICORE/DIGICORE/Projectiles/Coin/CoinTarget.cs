@@ -28,5 +28,9 @@ public partial class CoinTarget : Node3D {
         SortedPriorities.Remove(Priority);
     }
     
-    [Export] public int Priority = 0;
+    [Export] public CollisionObject3D CollisionObject;
+    [Export] public int Priority = int.MaxValue;
+
+    public override void _EnterTree() { _AddToPriorityList(); }
+    public override void _ExitTree() { _RemoveFromPriorityList(); }
 }
