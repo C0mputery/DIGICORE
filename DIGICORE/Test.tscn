@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://fr0k5m8e80wf"]
+[gd_scene load_steps=8 format=3 uid="uid://fr0k5m8e80wf"]
 
-[ext_resource type="Script" uid="uid://bf6sbwm1xa43y" path="res://SceneManagement/MainScene.cs" id="1_2au82"]
 [ext_resource type="PackedScene" uid="uid://bxqw1c7o6j814" path="res://LocalPlayer.tscn" id="1_myinc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rvu7i"]
@@ -32,7 +31,6 @@ albedo_texture = SubResource("GradientTexture2D_njov2")
 metallic_specular = 0.0
 
 [node name="Test" type="Node3D"]
-script = ExtResource("1_2au82")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_njov2")
